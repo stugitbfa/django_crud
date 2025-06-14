@@ -1,0 +1,37 @@
+{% extends  'crud/base.html' %}
+
+{% block title %}
+Update
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 d-flex justify-content-center" >
+            <fieldset>
+                <legend class="text-center mb-5">
+                    Update Form
+                </legend>
+                <form action="{% url 'update_post' post_id=post.id %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <img src="{{post.image.url}}" height="100px" alt=""><br>
+                    <p class="text-center">Old image</p><br>
+
+                    <label for="">Upload file</label>
+                    <input type="file" name="post_image" class="form-control mb-3">
+
+                    <label for="">Title</label>
+                    <input type="text" name="title" class="form-control mb-3" value="{{post.title}}">
+
+                    <label for="">Content</label>
+                    <textarea name="content" class="form-control mb-3">{{post.content}}</textarea>
+
+                    
+                    <input type="submit" class="btn btn-dark" value="Update">
+                </form>
+            </fieldset>
+        </div>
+    </div>
+</div>
+{% endblock %}
